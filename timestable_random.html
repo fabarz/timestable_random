@@ -7,14 +7,14 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Random Times Table</title>
   <style type="text/css">
-    body {
-    }
-
-    .grid {
-    }
-
+	.btn {
+        width: 200px;
+		height: 50px;
+		font-size: xx-large;
+	}
+	
     .row {
-      clear: both;
+        clear: both;
     }
 
     .cell {
@@ -30,7 +30,7 @@
 </head>
 <body>
 </body>
-<input type="button" onclick="printDiv('main')" value="Print" />
+<input class="btn" type="button" onclick="printDiv('main')" value="Print" /><br/><br/>
 
  <script>
 function printDiv(divName) {
@@ -80,7 +80,7 @@ function printDiv(divName) {
     var w = Math.floor(($(window).width() - wmargin)/size),
         h = Math.floor(($(window).height() - hmargin)/size);
 
-    var grid = $('<div id="main" class="main"/>', {
+    var grid = $('<div id="main"/>', {
         class: 'grid',
     }).appendTo('body');
 
@@ -102,7 +102,8 @@ function printDiv(divName) {
             {
               if (p == 0)
               {
-                cell.text('Times Table').css('font-size', '150%');
+                cell.text('Times Table').css('font-size', '100%');
+				cell.css('line-height', (h/2)+'px');
               } else
               {
                 cell.text(arr1[p-1]);
