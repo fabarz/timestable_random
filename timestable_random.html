@@ -46,37 +46,8 @@ function printDiv(divName) {
 
 </script>
 <script>
-  function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-  }
-
-  function createGrid(name, size, res) {
-    var arr1 = [];
-    for (var i = 1; i < size; i++) {
-      arr1.push(i);
-    }
-    shuffle(arr1);
-    var arr2 = [];
-    for (var i = 1; i < size; i++) {
-      arr2.push(i);
-    }
-    shuffle(arr2);
-
+  function createGrid(arr1, arr2, name, size, res) {
+    var size = size + 1;
     var borderSize = 3;
     var wmargin = 22 * size * borderSize;
     var hmargin = 10 * size * borderSize;
@@ -128,7 +99,40 @@ function printDiv(divName) {
         class: 'row'
     }).addClass('pagebreak').text('--').appendTo(grid);
   }
-  createGrid('main1', 13);
-  createGrid('result', 13, 1);
+  
+  function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
+
+  function randomArray(size)
+  {
+    var arr = [];
+	for (var i = 1; i <= size; i++) {
+	  arr.push(i);
+	}
+	shuffle(arr);
+	return arr;
+  }
+  
+  var size = 12;
+  var arr1 = randomArray(size);
+  var arr2 = randomArray(size);
+  createGrid(arr1, arr2, 'main1', size);
+  createGrid(arr1, arr2, 'result', size, 1);
 </script>
 </html>
