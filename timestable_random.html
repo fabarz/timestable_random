@@ -7,12 +7,12 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Random Times Table</title>
   <style type="text/css">
-	.btn {
+    .btn {
         width: 200px;
-		height: 50px;
-		font-size: xx-large;
-	}
-	
+        height: 50px;
+        font-size: xx-large;
+    }
+    
     .row {
         clear: both;
     }
@@ -26,12 +26,15 @@
         background-color: white;
         text-align: center;
     }
+    .pagebreak {
+        page-break-after: always;
+    }
   </style>
 </head>
 <body>
 </body>
 <input class="btn" type="button" onclick="printDiv('main')" value="Print" /><br/><br/>
-
+<div id = 'main'></div>
  <script>
 function printDiv(divName) {
      var printContents = document.getElementById(divName).innerHTML;
@@ -62,7 +65,7 @@ function printDiv(divName) {
     return array;
   }
 
-  function createGrid(size) {
+  function createGrid(name, size, res) {
     var arr1 = [];
     for (var i = 1; i < size; i++) {
       arr1.push(i);
@@ -76,19 +79,19 @@ function printDiv(divName) {
 
     var borderSize = 3;
     var wmargin = 22 * size * borderSize;
-    var hmargin = 8 * size * borderSize;
+    var hmargin = 10 * size * borderSize;
     var w = Math.floor(($(window).width() - wmargin)/size),
         h = Math.floor(($(window).height() - hmargin)/size);
 
-    var grid = $('<div id="main"/>', {
+    var grid = $('<div id="' + name + '"/>', {
         class: 'grid',
-    }).appendTo('body');
+    }).appendTo('#main');
 
     var firstRow = 1;
 
     for (var i = 0; i < size; i++) {
         var row = $('<div />', {
-          class: 'row'
+            class: 'row'
         }).appendTo(grid);
 
         for(var p = 0; p < size; p++){
@@ -103,18 +106,16 @@ function printDiv(divName) {
               if (p == 0)
               {
                 cell.text('Times Table').css('font-size', '100%');
-				cell.css('line-height', (h/2)+'px');
+                cell.css('line-height', (h/2)+'px');
               } else
               {
                 cell.text(arr1[p-1]);
               }
             }
-            else
-            {
-              if (p == 0)
-              {
+            else if (p == 0) {              
                 cell.text(arr2[i-1]);
-              }
+            } else if (res) {
+                cell.text(arr1[p-1] * arr2[i-1]);            
             }
             cell.appendTo(row);
         }
@@ -123,7 +124,11 @@ function printDiv(divName) {
           firstRow = 0;
         }
     }
+    var row = $('<div />', {
+        class: 'row'
+    }).addClass('pagebreak').text('--').appendTo(grid);
   }
-  createGrid(13);
+  createGrid('main1', 13);
+  createGrid('result', 13, 1);
 </script>
 </html>
