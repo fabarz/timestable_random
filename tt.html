@@ -47,11 +47,8 @@
 
   function createGrid(arr1, arr2, name, size, res) {
     var size = size + 1;
-    var borderSize = 3;
-    var wmargin = 22 * size * borderSize;
-    var hmargin = 10 * size * borderSize;
-    var w = Math.floor(($(window).width() - wmargin)/size),
-        h = Math.floor(($(window).height() - hmargin)/size);
+    var w = Math.floor(($(window).width())/(5 + (size * 2))),
+        h = Math.floor(($(window).height())/(size + 5));
 
     var grid = $('<div id="' + name + '"/>', {
         class: 'grid',
