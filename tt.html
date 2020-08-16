@@ -12,40 +12,39 @@
         height: 50px;
         font-size: xx-large;
     }
-    
+
     .row {
         clear: both;
     }
 
     .cell {
-        font-size: x-large;
+        font-size: large;
         font-weight: bold;
         font-family: "Comic Sans MS", cursive, sans-serif;
-        border: 3px solid black;
+        border: 1px solid black;
         float: left;
         background-color: white;
         text-align: center;
     }
+
     .pagebreak {
         page-break-after: always;
     }
   </style>
 </head>
 <body>
+  <input class="btn" type="button" onclick="printDiv('main')" value="Print" /><br/><br/>
+  <div id = 'main'></div>
 </body>
-<input class="btn" type="button" onclick="printDiv('main')" value="Print" /><br/><br/>
-<div id = 'main'></div>
  <script>
-function printDiv(divName) {
-     var printContents = document.getElementById(divName).innerHTML;
-     var originalContents = document.body.innerHTML;
-     document.body.innerHTML = printContents;
-     window.print();
-     document.body.innerHTML = originalContents;
-}
+  function printDiv(divName) {
+    var printContents = document.getElementById(divName).innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+  }
 
-</script>
-<script>
   function createGrid(arr1, arr2, name, size, res) {
     var size = size + 1;
     var borderSize = 3;
@@ -122,11 +121,11 @@ function printDiv(divName) {
   function randomArray(size)
   {
     var arr = [];
-	for (var i = 1; i <= size; i++) {
-	  arr.push(i);
-	}
-	shuffle(arr);
-	return arr;
+    for (var i = 1; i <= size; i++) {
+      arr.push(i);
+    }
+    shuffle(arr);
+    return arr;
   }
   
   var size = 12;
