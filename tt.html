@@ -33,16 +33,27 @@
   </style>
 </head>
 <body>
-  <input class="btn" type="button" onclick="printDiv('main')" value="Print" /><br/><br/>
+  <div id="control">
+    <input class="btn" id="button" type="button" onclick="printDiv('main')" value="Print" /><br/>
+    <input type="checkbox" id="withResults">With Results<br/>
+  </div>
   <div id = 'main'></div>
 </body>
  <script>
+  $(document).ready(function(){
+    $('#result').hide();
+    $('#withResults').change(function(){
+      if(this.checked)
+        $('#result').fadeIn('slow');
+      else
+        $('#result').fadeOut('slow');
+    });
+  });
+
   function printDiv(divName) {
-    var printContents = document.getElementById(divName).innerHTML;
-    var originalContents = document.body.innerHTML;
-    document.body.innerHTML = printContents;
+    $("#control").hide();
     window.print();
-    document.body.innerHTML = originalContents;
+    $("#control").fadeIn();
   }
 
   function createGrid(arr1, arr2, name, size, res) {
